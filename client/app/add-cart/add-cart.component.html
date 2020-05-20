@@ -1,0 +1,58 @@
+<hr>
+<h3 class="card-header">Cart</h3>
+<div class="card-body">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Desc</th>
+        <th scope="col">Price</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Barcode
+        <th scope="col">Image</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr *ngFor="let item of products">
+        <td>{{item.Productname}}</td>
+        <td>{{item.Productdesc}}</td>
+        <td>{{item.Price}}</td>
+        <td>{{item.Brand}}</td>
+        <td>{{item.Barcode}}
+        <td>
+          <img [src]="item.Image" alt="image" width="55" height="45">
+        </td>
+      </tr>
+    </tbody> 
+  </table>
+</div>
+
+
+
+
+<h3 class="card-header">Payment</h3>
+<div class="card-body">
+  <button class="btn btn-sm btn-primary" routerLink="/payment">Shipping Prices</button>
+  <hr>
+<form class="form-inline" [formGroup]="checkoutform" (ngSubmit)="onSubmit(checkoutform.value)">
+
+  <div>
+    
+    <input class="form-control mr-2" type="text" name="Name" 
+    formControlName="Name" placeholder="Enter Name" required>
+    <input class="form-control mr-2" type="text" name="Address" 
+    formControlName="Address" placeholder="Enter Address" required>
+    <input class="form-control mr-2" type="number" name="CCNumber" 
+    formControlName="CCNumber" placeholder="Enter CCNumber" required>
+    <input class="form-control mr-2" type="number" name="Expiration" 
+    formControlName="Expiration" placeholder="Enter Expiration" required>
+    <input class="form-control mr-2" type="password" name="CCV" maxlength="3"
+    formControlName="CCV" placeholder="Enter CCV" required>
+    
+  </div>
+
+  
+  <button class="btn btn-outline-dark" type="submit">Purchase</button>
+
+</form>
+</div>

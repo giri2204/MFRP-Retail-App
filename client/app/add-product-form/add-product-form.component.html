@@ -1,0 +1,24 @@
+
+    <h4 class="card-header">Add new product</h4>
+    <div class="card-body">
+      <form class="form-inline" [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+        <input class="form-control mr-2" type="text" name="Productname"
+               formControlName="Productname" placeholder="Product Name">
+       <input class="form-control mr-2" type="text" name="Productdesc"
+               formControlName="Productdesc" placeholder="Product Description">
+        <input class="form-control mr-2" type="number" name="Price"
+               formControlName="Price" placeholder="Price">
+        <input class="form-control mr-2" type="text" name="Brand"
+               formControlName="Brand" placeholder="Brand">
+        <input class="form-control mr-2" type="number" name="Barcode"
+               formControlName="Barcode" placeholder="Barcode">
+       <input class="form-control mr-2" type="string" name="Image" formControlName="Image"
+              formControlName="Image" placeholder="Image">
+       
+        <button class="btn btn-primary" type="submit" [disabled]="!addProductForm.valid">
+          <i class="fa fa-plus"></i> Add
+        </button>
+      </form>
+    </div>
+  
+  

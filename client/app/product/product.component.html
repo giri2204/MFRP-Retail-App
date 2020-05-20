@@ -1,0 +1,120 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+<hr>
+<div *ngIf="!isLoading">
+  <div class="card-header">
+    <h4>Current Products ({{products.length}})
+    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModalScrollable">Add Product</button></h4>
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Add New Product</h5>
+          </div>
+          <div class="modal-body">
+            <form class="form" [formGroup]="ProductForm">
+             <label><b>Product Name</b></label> 
+            <input class="form-control mr-2" type="text" name="Productname"
+               formControlName="Productname" placeholder="Product Name">
+               <br>
+               <label><b>Product Description</b></label>
+            <input class="form-control mr-2" type="text" name="Productdesc"
+               formControlName="Productdesc" placeholder="Product Description">
+               <br>
+               <label><b>Product Rate</b></label>
+            <input class="form-control mr-2" type="number" name="Price"
+                  formControlName="Price" placeholder="Price">
+                  <br>
+                  <label><b>Brand Name</b></label>
+            <input class="form-control mr-2" type="text" name="Brand"
+                  formControlName="Brand" placeholder="Brand">
+                  <br>
+                  <label><b>Barcode</b></label>
+            <input class="form-control mr-2" type="number" name="Barcode"
+                  formControlName="Barcode" placeholder="Barcode">
+                  <br>
+                  <label><b>Product Image</b></label>
+          <input class="form-control mr-2" type="string" name="Image" formControlName="Image"
+                  formControlName="Image" placeholder="Image">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" 
+                [disabled]="!ProductForm.valid" (click)="addProduct()">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Product Name</th>
+          <th scope="col">Product Desc</th>
+          <th scope="col">Price</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Barcode
+          <th scope="col">Image</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="products.length === 0">
+        <tr>
+          <td colspan="7">There are no products in the DB. Add a new product below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let product of products">
+          <td>{{product.Productname}}</td>
+          <td>{{product.Productdesc}}</td>
+          <td>{{product.Price}}</td>
+          <td>{{product.Brand}}</td>
+          <td>{{product.Barcode}}
+          <td>
+            <img [src]="product.Image" width="45" height="35">
+          </td>
+          <td>
+            <button class="btn btn-dark btn-sm" (click)="enableEditing(product)">
+               Edit
+            </button> 
+            &nbsp;
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(product)">
+               Delete
+            </button>
+          </td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="6">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editProduct(product)">
+              <input class="form-control mr-2" type="text" name="Productname"
+                     [(ngModel)]="product.Productname" placeholder="Product Name" required>
+             <input class="form-control mr-2" type="text" name="Productdesc"
+                     [(ngModel)]="product.Productdesc" placeholder="Product Description" required>
+             <input class="form-control mr-2" type="number" name="Price"
+                     [(ngModel)]="product.Price" placeholder="Price" required>
+              <input class="form-control mr-2" type="text" name="Brand"
+                     [(ngModel)]="product.Brand" placeholder="Brand"  required>
+              <input class="form-control mr-2" type="number" name="Barcode"
+                     [(ngModel)]="product.Barcode" placeholder="Barcode" required>
+              <input class="form-control mr-2" type="string" name="Image"
+                      [(ngModel)]="product.Image" required>
+              
+              <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid">
+                <i class="fa fa-floppy-o"></i> Save
+              </button>
+              <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
+                <i class="fa fa-times"></i> Cancel
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

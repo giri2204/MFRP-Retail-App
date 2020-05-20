@@ -1,0 +1,10 @@
+<h3>Shipping Prices</h3>
+
+<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
+  <h5>{{ shipping.type }}</h5>
+  <h6>{{ shipping.price | currency }}</h6>
+</div>
+<button class="btn btn-primary" type="submit" routerLink="/add-cart">
+  <i class="fa fa-arrow-left"></i> Back
+</button>
+

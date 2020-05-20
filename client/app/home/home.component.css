@@ -1,0 +1,36 @@
+.nav-item{
+    padding:2px;
+    margin-left: 7px;
+}
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    text-align: center;
+}
+.img-wrapper {
+    position: relative;
+    width: 100%;
+   }
+  
+  .img-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  
+  .img-overlay:before {
+    content: ' ';
+    display: block;
+    /* adjust 'height' to position overlay content vertically */
+    height: 45%;
+  }
+  
+
+
+  

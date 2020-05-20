@@ -1,0 +1,51 @@
+<hr>
+<h4 class="card-header">PRODUCT DETAILS</h4>      
+    <div class="card-body">
+        <div *ngIf="product">
+            <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-responsive" [src]="product.Image"  alt="Card image cap" width="750" height="500">
+                        </div>
+                        <div class="col-md-6">
+                            <label><b>Product Name</b></label>
+                            <input class="form-control mr-2" type="text" name="Productname" 
+                                [(ngModel)]="product.Productname" placeholder="Product Name" required>
+                            <br>
+                            <label><b>Product Description</b></label>
+                            <input class="form-control mr-2" type="text" name="Productdesc" 
+                                [(ngModel)]="product.Productdesc" placeholder="Product Desc" required>
+                            <br>
+                            <label><b>Brand Name</b></label>
+                            <input class="form-control mr-2" type="text" name="Brandname" 
+                                [(ngModel)]="product.Brand" placeholder="Brand Name" required>
+                            <br>
+                            <label><b>Product Price</b></label>
+                            <input class="form-control mr-2" type="number" name="Productprice"
+                                [(ngModel)]="product.Price" placeholder="Product Price" required>
+                            <br>
+                            <label><b>Product Barcode</b></label>
+                            <input class="form-control mr-2" type="number" name="Barcode" 
+                                [(ngModel)]="product.Barcode" placeholder="Barcode" required>
+                            <hr>    
+                            <button class="btn btn-outline-dark" type="submit" routerLink="/">
+                                <i class="fa fa-arrow-left"></i> Back
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-outline-dark" (click)="addToCart(product)">
+                                <i class="fa fa-shopping-cart"></i>Add cart
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-outline-dark" (click)="addToCart(product)" routerLink="/add-cart">
+                                <i class="fa fa-check"></i>Buy
+                            </button>
+                        </div>  
+            </div>
+        </div>
+    </div>
+
+
+
+    
+        
+    
+
